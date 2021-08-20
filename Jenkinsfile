@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Push Docker-hub') {
             steps{
-                sh 'docker push image_pipeline:latest'
+                sh 'docker push caupolicanquerales/my-first-repository:latest'
             }
         }
         
