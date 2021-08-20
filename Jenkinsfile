@@ -7,9 +7,9 @@ pipeline {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps{
-                echo 'Testing..'
+                sh 'mvn clean install -X'
             }
         }
         stage('Deploy') {
