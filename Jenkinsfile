@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build docker') {
             steps{
-                sh 'docker build -t image_pipeline:latest .'
+                sh 'docker build -t caupolicanquerales/my-first-repository:latest .'
             }
         }
         stage('Login docker'){
