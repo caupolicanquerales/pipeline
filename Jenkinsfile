@@ -17,6 +17,11 @@ pipeline {
                 sh 'docker build -t image_pipeline .'
             }
         }
+        stage('Push image to Docker-hub') {
+            steps{
+                sh 'docker push caupolicanquerales/my-first-repository:image_pipeline'
+            }
+        }
         stage('Deploy') {
             steps{
                 echo 'Deploying..'
