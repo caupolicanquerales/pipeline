@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('caupolicanquerales-dockerhub')
+    }
     stages{
         stage('Clone Repository') {
             steps{
@@ -12,19 +15,24 @@ pipeline {
                 sh 'mvn clean install -X'
             }
         }
-        stage('Build docker image') {
+        stage('Build docker') {
             steps{
-                sh 'docker build -t image_pipeline .'
+                sh 'docker build -t image_pipeline:latest .'
             }
         }
-        stage('Push image to Docker-hub') {
+        stage('Login docker'){
             steps{
-                sh 'docker push image_pipeline:1.0'
+                sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('Deploy') {
+        stage('Push Docker-hub') {
             steps{
-                echo 'Deploying..'
+                sh 'docker push image_pipeline:latest'
+            }
+        }
+        post{
+            always{
+                sh 'docker logout'
             }
         }
     }
