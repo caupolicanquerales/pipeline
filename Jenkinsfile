@@ -30,10 +30,11 @@ pipeline {
                 sh 'docker push image_pipeline:latest'
             }
         }
-        post{
-            always{
-                sh 'docker logout'
-            }
+        
+    }
+    post{
+        always{
+            sh 'docker logout'
         }
     }
 }
