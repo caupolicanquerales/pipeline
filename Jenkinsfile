@@ -12,6 +12,11 @@ pipeline {
                 sh 'mvn clean install -X'
             }
         }
+        stage('Build docker image') {
+            steps{
+                sh 'docker build -t image_pipeline .'
+            }
+        }
         stage('Deploy') {
             steps{
                 echo 'Deploying..'
