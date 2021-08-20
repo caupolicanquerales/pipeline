@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Push image to Docker-hub') {
             steps{
-                sh 'docker push caupolicanquerales/my-first-repository:image_pipeline'
+                sh 'docker push image_pipeline:1.0'
             }
         }
         stage('Deploy') {
